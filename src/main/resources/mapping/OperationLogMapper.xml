@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hohe.mapper.OperationLogMapper" >
+  <resultMap id="BaseResultMap" type="com.hohe.model.OperationLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="FUNCTION_NAME" property="functionName" jdbcType="VARCHAR" />
+    <result column="OPERATE_DATE" property="operateDate" jdbcType="TIMESTAMP" />
+    <result column="CURRENT_VERSION" property="currentVersion" jdbcType="VARCHAR" />
+    <result column="PLATFORM_FLAG" property="platformFlag" jdbcType="VARCHAR" />
+    <result column="PLATFORM_LOGIN_ID" property="platformLoginId" jdbcType="VARCHAR" />
+    <result column="COMPANY_CODE" property="companyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hohe.model.OperationLog" extends="BaseResultMap" >
+    <result column="PARAMETERS" property="parameters" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IP, URL, OPERATOR, FUNCTION_NAME, OPERATE_DATE, CURRENT_VERSION, PLATFORM_FLAG, 
+    PLATFORM_LOGIN_ID, COMPANY_CODE
+  </sql>
+  <sql id="Blob_Column_List" >
+    PARAMETERS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_operation_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_operation_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hohe.model.OperationLog" >
+    insert into t_operation_log (ID, IP, URL, 
+      OPERATOR, FUNCTION_NAME, OPERATE_DATE, 
+      CURRENT_VERSION, PLATFORM_FLAG, PLATFORM_LOGIN_ID, 
+      COMPANY_CODE, PARAMETERS)
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{functionName,jdbcType=VARCHAR}, #{operateDate,jdbcType=TIMESTAMP}, 
+      #{currentVersion,jdbcType=VARCHAR}, #{platformFlag,jdbcType=VARCHAR}, #{platformLoginId,jdbcType=VARCHAR}, 
+      #{companyCode,jdbcType=VARCHAR}, #{parameters,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hohe.model.OperationLog" >
+    insert into t_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="functionName != null" >
+        FUNCTION_NAME,
+      </if>
+      <if test="operateDate != null" >
+        OPERATE_DATE,
+      </if>
+      <if test="currentVersion != null" >
+        CURRENT_VERSION,
+      </if>
+      <if test="platformFlag != null" >
+        PLATFORM_FLAG,
+      </if>
+      <if test="platformLoginId != null" >
+        PLATFORM_LOGIN_ID,
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE,
+      </if>
+      <if test="parameters != null" >
+        PARAMETERS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDate != null" >
+        #{operateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentVersion != null" >
+        #{currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="platformFlag != null" >
+        #{platformFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="platformLoginId != null" >
+        #{platformLoginId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parameters != null" >
+        #{parameters,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hohe.model.OperationLog" >
+    update t_operation_log
+    <set >
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDate != null" >
+        OPERATE_DATE = #{operateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentVersion != null" >
+        CURRENT_VERSION = #{currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="platformFlag != null" >
+        PLATFORM_FLAG = #{platformFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="platformLoginId != null" >
+        PLATFORM_LOGIN_ID = #{platformLoginId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parameters != null" >
+        PARAMETERS = #{parameters,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hohe.model.OperationLog" >
+    update t_operation_log
+    set IP = #{ip,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
+      OPERATE_DATE = #{operateDate,jdbcType=TIMESTAMP},
+      CURRENT_VERSION = #{currentVersion,jdbcType=VARCHAR},
+      PLATFORM_FLAG = #{platformFlag,jdbcType=VARCHAR},
+      PLATFORM_LOGIN_ID = #{platformLoginId,jdbcType=VARCHAR},
+      COMPANY_CODE = #{companyCode,jdbcType=VARCHAR},
+      PARAMETERS = #{parameters,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hohe.model.OperationLog" >
+    update t_operation_log
+    set IP = #{ip,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
+      OPERATE_DATE = #{operateDate,jdbcType=TIMESTAMP},
+      CURRENT_VERSION = #{currentVersion,jdbcType=VARCHAR},
+      PLATFORM_FLAG = #{platformFlag,jdbcType=VARCHAR},
+      PLATFORM_LOGIN_ID = #{platformLoginId,jdbcType=VARCHAR},
+      COMPANY_CODE = #{companyCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
