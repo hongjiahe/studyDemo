@@ -41,11 +41,11 @@ public class UserController {
         }else{
             //从DB中获取信息
             logger.info("从数据库中获取数据");
-            User user = userService.selectByPrimaryKey(3);
+            User user = userService.selectByPrimaryKey(4);
             logger.info(user.getUserName());
 
             //写入缓存
-            //redisUtils.set(key.concat(user.getUserId().toString()),user);
+            redisUtils.set(key.concat(user.getUserId().toString()),user);
             logger.info(user.getUserId()+"------------> id");
 
             redisUtils.set(user.getUserId()+"",user);
@@ -64,24 +64,28 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/testRedis")
-    public void testRedis(String key){
-
-        logger.info("info+'123123123q212312洪家河是帅哥");
-
+    public String testRedis(String key){
         if(redisUtils.exists(key)){
             logger.info("存在该key : "+ key);
             User user = (User) redisUtils.get(key);
             logger.info(user.getUserName());
             logger.info(user.getPassword());
+            return user.toString();
         }else{
             logger.info("不存在");
         }
+        return null;
     }
 
     @ResponseBody
     @RequestMapping(value = "/testRemove")
     public void testRemove(String key){
         redisUtils.remove(key);
+    }
+
+    @RequestMapping(value = "/view")
+    public String view(){
+        return "user/index";
     }
 
 }
