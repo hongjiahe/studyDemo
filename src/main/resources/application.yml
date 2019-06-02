@@ -4,7 +4,8 @@ server:
 spring:
     datasource:
         name: test21
-        url: jdbc:mysql:///test?characterEncoding=UTF-8
+        #url: jdbc:mysql://192.168.100.131:3306/test?characterEncoding=UTF-8
+        url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8
         username: root
         password: 123456
         # 使用druid数据源
@@ -24,16 +25,6 @@ spring:
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
 
-
-    thymeleaf:
-        cache: false
-        prefix: classpath:/templates/
-        suffix: .html
-        encoding: UTF-8
-        content-type: text/html
-        mode: HTML5
-
-
 ## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
 mybatis:
   mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
@@ -49,3 +40,8 @@ pagehelper:
 quartz:
     enabled: true
 
+#activemq
+activemq:
+    broker-url: tcp://localhost:61616
+    in-memory: true
+    pool.enabled: false
