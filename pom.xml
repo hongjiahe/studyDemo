@@ -170,6 +170,12 @@
             <version>2.8.0</version>
         </dependency>
 
+        <!--  activemq -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+
 
     </dependencies>
 
