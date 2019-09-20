@@ -4,9 +4,9 @@ server:
 spring:
     datasource:
         name: test21
-        url: jdbc:mysql:///test?characterEncoding=UTF-8
+        url: jdbc:mysql://47.102.106.153:3306/study?characterEncoding=UTF-8
         username: root
-        password: 123456
+        password: admin
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
