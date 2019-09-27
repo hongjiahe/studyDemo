@@ -1,28 +1,42 @@
 server:
   port: 8085
 
-spring:
-    datasource:
-        name: test21
-        url: jdbc:mysql://47.102.106.153:3306/study?characterEncoding=UTF-8
-        username: root
-        password: admin
+#spring:
+    #datasource:
+        #name: test21
+        #url: jdbc:mysql://47.102.106.153:3306/study?characterEncoding=UTF-8
+        #username: root
+        #password: admin
         # 使用druid数据源
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        filters: stat
-        maxActive: 20
-        initialSize: 1
-        maxWait: 60000
-        minIdle: 1
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
+        #type: com.alibaba.druid.pool.DruidDataSource
+        #driver-class-name: com.mysql.jdbc.Driver
+        #filters: stat
+        #maxActive: 20
+        #initialSize: 1
+        #maxWait: 60000
+        #minIdle: 1
+        #timeBetweenEvictionRunsMillis: 60000
+        #minEvictableIdleTimeMillis: 300000
+        #validationQuery: select 'x'
+        #testWhileIdle: true
+        #testOnBorrow: false
+        #testOnReturn: false
+        #poolPreparedStatements: true
+        #maxOpenPreparedStatements: 20
+
+## MySQL 读写分离
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc-url: jdbc:mysql://47.102.106.153:3306/test
+      username: root
+      password: admin
+      driver-class-name: com.mysql.jdbc.Driver
+    slave1:
+      jdbc-url: jdbc:mysql://192.168.102.31:3306/test
+      username: root
+      password: admin
+      driver-class-name: com.mysql.jdbc.Driver
 
 
     thymeleaf:
