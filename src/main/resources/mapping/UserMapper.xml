@@ -21,9 +21,8 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hohe.model.User" >
-    insert into t_user (user_id, user_name, password,
-      phone)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    insert into t_user (user_name, password,phone)
+    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hohe.model.User" >
@@ -79,4 +78,9 @@
       phone = #{phone,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select * from t_user
+  </select>
+
 </mapper>

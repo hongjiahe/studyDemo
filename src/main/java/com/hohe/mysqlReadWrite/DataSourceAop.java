@@ -9,22 +9,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataSourceAop {
 
-//    @Pointcut("!@annotation(com.cjs.example.annotation.Master) " +
-//            "&& (execution(* com.cjs.example.service..*.select*(..)) " +
-//            "|| execution(* com.cjs.example.service..*.get*(..)))")
-    @Pointcut()
+    @Pointcut("!@annotation(com.hohe.mysqlReadWrite.Master) " +
+            "&& (execution(* com.hohe.service..*.select*(..)) " +
+            "|| execution(* com.hohe.service..*.get*(..)))")
     public void readPointcut() {
 
     }
 
-    @Pointcut()
-//    @Pointcut("@annotation(com.cjs.example.annotation.Master) " +
-//            "|| execution(* com.cjs.example.service..*.insert*(..)) " +
-//            "|| execution(* com.cjs.example.service..*.add*(..)) " +
-//            "|| execution(* com.cjs.example.service..*.update*(..)) " +
-//            "|| execution(* com.cjs.example.service..*.edit*(..)) " +
-//            "|| execution(* com.cjs.example.service..*.delete*(..)) " +
-//            "|| execution(* com.cjs.example.service..*.remove*(..))")
+    @Pointcut("@annotation(com.hohe.mysqlReadWrite.Master) " +
+            "|| execution(* com.hohe.service..*.insert*(..)) " +
+            "|| execution(* com.hohe.service..*.add*(..)) " +
+            "|| execution(* com.hohe.service..*.update*(..)) " +
+            "|| execution(* com.hohe.service..*.edit*(..)) " +
+            "|| execution(* com.hohe.service..*.delete*(..)) " +
+            "|| execution(* com.hohe.service..*.remove*(..))")
     public void writePointcut() {
 
     }
@@ -43,7 +41,7 @@ public class DataSourceAop {
     /**
      * 另一种写法：if...else...  判断哪些需要读从数据库，其余的走主数据库
      */
-//    @Before("execution(* com.cjs.example.service.impl.*.*(..))")
+//    @Before("execution(* com.hohe.service.impl.*.*(..))")
 //    public void before(JoinPoint jp) {
 //        String methodName = jp.getSignature().getName();
 //
