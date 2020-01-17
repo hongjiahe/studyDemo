@@ -6,9 +6,10 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    user_id, user_name, password, phone
+    user_id, user_name, password, phone,create_name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
@@ -21,9 +22,9 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hohe.model.User" >
-    insert into t_user (user_name, password,phone)
+    insert into t_user (user_name, password,phone,create_name)
     values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{phone,jdbcType=VARCHAR})
+      #{phone,jdbcType=VARCHAR},#{create_name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hohe.model.User" >
     insert into t_user

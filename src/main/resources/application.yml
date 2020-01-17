@@ -32,7 +32,7 @@ spring:
       username: root
       password: admin
       # 使用druid数据源
-      type: com.alibaba.druid.pool.DruidDataSource
+      type: com.alibaba.dr  uid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
       filters: stat
       maxActive: 20
